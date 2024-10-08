@@ -31,6 +31,9 @@ var _ DB = (*TikvDB)(nil)
 
 func NewTikvDB(name string, dir string) (*TikvDB, error) {
 	addrs := viper.GetStringSlice(FlagTikvDBAddrs)
+	if len(addrs) == 0 {
+		panic("tikv addr not found")
+	}
 	//params := parseOptParams(viper.GetString(FlagTikvDBOpts))
 
 	return NewTikvDBWithOpts(name, dir, addrs, nil)
