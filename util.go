@@ -49,3 +49,17 @@ func FileExists(filePath string) bool {
 	_, err := os.Stat(filePath)
 	return !os.IsNotExist(err)
 }
+
+func checkEmptyValue(bz []byte) []byte {
+	if bytes.Equal(bz, emptyStringTag) {
+		return []byte("")
+	}
+	return cp(bz)
+}
+
+func setNotEmptyValue(bz []byte) []byte {
+	if len(bz) == 0 {
+		return emptyStringTag
+	}
+	return bz
+}

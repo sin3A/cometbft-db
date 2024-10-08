@@ -35,6 +35,15 @@ const (
 	RocksDBBackend BackendType = "rocksdb"
 
 	BadgerDBBackend BackendType = "badgerdb"
+
+	// TikvDBBackend represents tikv (uses github.com/tikv/client-go)
+	//   - EXPERIMENTAL
+	//	 - support storing large amounts of data
+	//   - use tikvdb build tag (go build -tags tikvdb)
+	TikvDBBackend BackendType = "tikvdb"
+
+	FlagTikvDBAddrs = "tikvdb.addrs"
+	FlagTikvDBOpts  = "tikvdb.opts"
 )
 
 type dbCreator func(name string, dir string) (DB, error)
